@@ -19,7 +19,7 @@ export default class FacilityRouter extends BaseRouter<
         const facility = await this.controller.createFacility(honoContext.req, honoContext.env);
         return honoContext.json(facility);
       } catch (ex: any) {
-        throw new HTTPException(500, { message: 'Something went wrong!!' });
+        throw new HTTPException(ex.status || 500, { message: ex.message});
       }
     }));
 
@@ -29,7 +29,7 @@ export default class FacilityRouter extends BaseRouter<
         const facilities = await this.controller.fetchFacilities(honoContext.env);
         return honoContext.json(facilities);
       } catch (ex: any) {
-        throw new HTTPException(500, { message: 'Something went wrong!!' });
+        throw new HTTPException(ex.status || 500, { message: ex.message});
       }
     }));
 
@@ -38,7 +38,7 @@ export default class FacilityRouter extends BaseRouter<
         const facility = await this.controller.deleteFacility(honoContext.req, honoContext.env);
         return honoContext.text("Deleted!");
       } catch (ex: any) {
-        throw new HTTPException(500, { message: 'Something went wrong!!' });
+        throw new HTTPException(ex.status || 500, { message: ex.message});
       }
     }));
 
@@ -47,7 +47,7 @@ export default class FacilityRouter extends BaseRouter<
         const facility = await this.controller.updateFacility(honoContext.req, honoContext.env);
         return honoContext.json(facility);
       } catch (ex: any) {
-        throw new HTTPException(500, { message: 'Something went wrong!!' });
+        throw new HTTPException(ex.status || 500, { message: ex.message});
       }
     }));
   };

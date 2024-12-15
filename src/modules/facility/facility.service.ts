@@ -4,6 +4,7 @@ import { facilityTable } from "../../db/schema";
 import FacilityConstants from "./models/facility.constant";
 import DrizzleService from "../../db";
 import { eq } from "drizzle-orm";
+import { HTTPException } from "hono/http-exception";
 
 /**
  * Facility module service to handle all db related operations regarding facility db
@@ -23,9 +24,13 @@ export default class FacilityService {
     }, env: any): Promise<typeof facilityTable.$inferSelect> {
         this.drizzleDb = DrizzleService.getInstance(env.DATABASE_URL);
         const id = Math.floor(Math.random() * 100000000);
-        const photoFile = facilityMultiPartBody.photo;
+        const photoFile = facilityMultiPartBody.photo as File;
         let photoUrl = undefined;
         if (photoFile) {
+            console.log(photoFile);
+            if (photoFile.size > 10000) {
+                throw new HTTPException(400, {message: 'File size less rthan 10 mb allowed'});
+            }
             let facilityBucket = env.PARAKEET_FACILITY_IMAGES_BUCKET;
             await facilityBucket.put(id + "", photoFile);
             photoUrl = FacilityConstants.CLOUD_FACILITY_BUCKET_PUBLIC_URL + id;
@@ -87,9 +92,12 @@ export default class FacilityService {
         [x: string]: string | File;
     }, env: any): Promise<typeof facilityTable.$inferSelect> {
         this.drizzleDb = DrizzleService.getInstance(env.DATABASE_URL);
-        const photoFile = facilityMultiPartBody.photo;
+        const photoFile = facilityMultiPartBody.photo as File;
         let photoUrl = undefined;
         if (photoFile) {
+            if (photoFile.size > 5 * 1024 * 1024) {
+                throw new HTTPException(400, {message: 'File size less than 5 mb allowed'});
+            }
             let facilityBucket = env.PARAKEET_FACILITY_IMAGES_BUCKET;
             await env.PARAKEET_FACILITY_IMAGES_BUCKET.delete(id);
             await facilityBucket.put(id + "", photoFile);
