@@ -4,9 +4,10 @@ compatibility_date = "2024-12-15"
 
 # compatibility_flags = [ "nodejs_compat" ]
 
-# [vars]
-# MY_VAR = "my-variable"
-
+[vars]
+DATABASE_URL = "my-variable"
+[env.dev]
+DATABASE_URL = "my-variable"
 # [[kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"
 # id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
@@ -26,3 +27,7 @@ compatibility_date = "2024-12-15"
 # [observability]
 # enabled = true
 # head_sampling_rate = 1
+[[r2_buckets]]
+binding = 'PARAKEET_FACILITY_IMAGES_BUCKET'
+bucket_name = 'parakeet-facility-images'
+preview_bucket_name = 'parakeet-facility-images'

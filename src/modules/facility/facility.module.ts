@@ -18,7 +18,6 @@ class FacilityModule extends BaseModule {
     super(FacilityConstants.MODULE_NAME);
 
     this.facilityService = new FacilityService(
-        this.drizzleDatabase,
       );
       this.facilityController = new FacilityController(
         this.facilityService,

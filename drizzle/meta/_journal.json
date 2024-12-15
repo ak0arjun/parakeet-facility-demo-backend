@@ -15,6 +15,13 @@
       "when": 1734228732371,
       "tag": "0001_luxuriant_vivisector",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1734241152440,
+      "tag": "0002_tranquil_susan_delgado",
+      "breakpoints": true
     }
   ]
 }

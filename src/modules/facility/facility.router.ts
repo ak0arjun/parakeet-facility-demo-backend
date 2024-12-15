@@ -13,8 +13,7 @@ export default class FacilityRouter extends BaseRouter<
 
         this.router.post("/", (async (honoContext: Context) => {
             try {
-                
-                const facility= await this.controller.createFacility(honoContext.req);
+                const facility= await this.controller.createFacility(honoContext.req, honoContext.env);
                 return honoContext.json(facility);
               } catch (ex: any) {
                 throw new HTTPException(500, { message: 'Something went wrong!!' });
