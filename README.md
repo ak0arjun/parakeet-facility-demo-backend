@@ -1,1 +1,8 @@
-# parakeet-facility-demo-backend
+```
+npm install
+npm run dev
+```
+
+```
+npm run deploy
+```
