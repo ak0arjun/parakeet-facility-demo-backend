@@ -1,0 +1,1 @@
+ALTER TABLE "facility" ALTER COLUMN "photoUrl" DROP NOT NULL;

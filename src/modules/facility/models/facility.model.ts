@@ -1,10 +1,11 @@
 export type FacilityModel = {
     id: number;
     name: string;
-    state: string | null;
-    zipCode: string | null;
-    city: string | null;
+    state: string;
+    zipCode: string;
+    city: string;
     photoUrl: string | null;
-    address: string | null;
-    phone: string | null;
+    address: string;
+    phone: string;
+    type: string | null;
 }

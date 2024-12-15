@@ -20,8 +20,8 @@ export default class FacilityController {
      */
     async createFacility(honoRequest: HonoRequest, env: Env): Promise<FacilityModel> {
         const multiPartBody = await honoRequest.parseBody();
-        if (!multiPartBody.name) {
-            throw new HTTPException(400, { message: 'Name is required!!' });
+        if (!multiPartBody.name || !multiPartBody.city || !multiPartBody.address || !multiPartBody.state || !multiPartBody.zipCode || !multiPartBody.phone) {
+            throw new HTTPException(400, { message: 'Required input is missing!!' });
         }
         return this.facilityService.createFacility(multiPartBody, env);
     }
