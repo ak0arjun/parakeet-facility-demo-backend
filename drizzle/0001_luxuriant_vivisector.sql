@@ -1,0 +1,1 @@
+ALTER TABLE "facility" ADD COLUMN "photoUrl" varchar(512);
