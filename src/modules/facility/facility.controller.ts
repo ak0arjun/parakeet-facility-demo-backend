@@ -10,7 +10,6 @@ export default class FacilityController {
 
     async createFacility(honoRequest: HonoRequest): Promise<FacilityModel> {
         const rawBody = await honoRequest.json();
-        console.log(rawBody);
         const createFacilityDto = Object.assign(
             new FacilityDto(),
             rawBody,
