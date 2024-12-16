@@ -73,6 +73,17 @@ export default class FacilityService {
     }
 
     /**
+     * Fetch the given facility
+     * @param id Id of the facility to be fetched
+     * @param env Environment details
+     */
+    async fetchFacility(id: number, env: any): Promise<typeof facilityTable.$inferSelect> {
+        this.drizzleDb = DrizzleService.getInstance(env.DATABASE_URL);
+        const facilities = await this.drizzleDb.select().from(facilityTable).where(eq(facilityTable.id, id));
+        return facilities[0];
+    }
+
+    /**
      * Delete the given facility
      * @param id Id of the facility to be deleted
      * @param env Environment details

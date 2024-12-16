@@ -13,6 +13,7 @@ import { HTTPException } from 'hono/http-exception'
 export default class FacilityRouter extends BaseRouter<
   FacilityController
 > {
+ 
   protected initRoutes(): void {
     this.router.post("/", (async (honoContext: Context) => {
       try {
@@ -28,6 +29,15 @@ export default class FacilityRouter extends BaseRouter<
       try {
         const facilities = await this.controller.fetchFacilities(honoContext.env);
         return honoContext.json(facilities);
+      } catch (ex: any) {
+        throw new HTTPException(ex.status || 500, { message: ex.message});
+      }
+    }));
+
+    this.router.get("/id", (async (honoContext: Context) => {
+      try {
+        const facilitiy = await this.controller.fetchFacility(honoContext.req, honoContext.env);
+        return honoContext.json(facilitiy);
       } catch (ex: any) {
         throw new HTTPException(ex.status || 500, { message: ex.message});
       }

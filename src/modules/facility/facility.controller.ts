@@ -36,6 +36,16 @@ export default class FacilityController {
     }
 
     /**
+     * Fetch the given facility object by id
+     * @param honoRequest Request details sent by user
+     * @param env Environment Detail
+     */
+    async fetchFacility(honoRequest: HonoRequest, env: Env): Promise<FacilityModel> {
+        const id = honoRequest.param('id');
+        return await this.facilityService.fetchFacility(parseInt(id!), env);
+    }
+
+    /**
      * Delete the given facility object by id
      * @param honoRequest Request details sent by user
      * @param env Environment Detail
