@@ -1,8 +1,9 @@
 export class FacilityDto {
     name!: string;
-    state: string | undefined;
-    zipCode: string | undefined;
-    city: string | undefined;
-    address: string | undefined;
-    phone: string | undefined;
+    state!: string;
+    zipCode!: string;
+    city!: string;
+    address!: string;
+    phone!: string;
+    type: string | undefined;
 }

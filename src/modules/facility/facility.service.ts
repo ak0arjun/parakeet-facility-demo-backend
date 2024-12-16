@@ -44,6 +44,7 @@ export default class FacilityService {
                 address: facilityMultiPartBody.address,
                 phone: facilityMultiPartBody.phone,
                 zipCode: facilityMultiPartBody.zipCode,
+                type: facilityMultiPartBody.type,
             },
         );
         const facilities = await this.drizzleDb.insert(facilityTable).values({
@@ -55,6 +56,7 @@ export default class FacilityService {
             phone: facilityDto.phone,
             photoUrl: photoUrl,
             zipCode: facilityDto.zipCode,
+            type: facilityDto.type,
         }).returning();
         return facilities[0];
     }
