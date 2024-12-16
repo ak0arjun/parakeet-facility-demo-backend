@@ -29,7 +29,7 @@ app.route('/facility', facilityRouter);
 app.route('/facility/*', facilityRouter);
 
 app.get('/', (c) => {
-  throw new HTTPException(500, { message: 'No route found' });
+  throw new HTTPException(404, { message: 'No route found' });
 })
 
 
