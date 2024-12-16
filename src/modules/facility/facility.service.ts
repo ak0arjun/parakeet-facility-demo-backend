@@ -28,8 +28,8 @@ export default class FacilityService {
         let photoUrl = undefined;
         if (photoFile) {
             console.log(photoFile);
-            if (photoFile.size > 10000) {
-                throw new HTTPException(400, {message: 'File size less rthan 10 mb allowed'});
+            if (photoFile.size > 5 * 1024 * 1204) {
+                throw new HTTPException(400, {message: 'File size less than 5 mb allowed'});
             }
             let facilityBucket = env.PARAKEET_FACILITY_IMAGES_BUCKET;
             await facilityBucket.put(id + "", photoFile);
