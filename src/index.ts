@@ -11,16 +11,24 @@ const app = new Hono()
     "Access-Control-Max-Age": "86400",
 }
 
-app.use('/facility', cors(
+app.use('/facility/*', cors(
 {
   origin:'*',
   allowMethods: ['POST', 'GET', 'OPTIONS','PATCH','DELETE'],
 }
 ));
+
+app.use('/facility', cors(
+  {
+    origin:'*',
+    allowMethods: ['POST', 'GET', 'OPTIONS','PATCH','DELETE'],
+  }
+  ));
+
 app.route('/facility', facilityRouter);
+app.route('/facility/*', facilityRouter);
 
 app.get('/', (c) => {
-  // TODO: return error
   throw new HTTPException(500, { message: 'No route found' });
 })
 

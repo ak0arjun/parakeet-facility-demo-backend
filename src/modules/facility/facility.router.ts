@@ -24,6 +24,15 @@ export default class FacilityRouter extends BaseRouter<
       }
     }));
 
+    this.router.get("/:id", (async (honoContext: Context) => {
+      try {
+        const facilitiy = await this.controller.fetchFacility(honoContext.req, honoContext.env);
+        console.log(facilitiy);
+        return honoContext.json(facilitiy);
+      } catch (ex: any) {
+        throw new HTTPException(ex.status || 500, { message: ex.message});
+      }
+    }));
 
     this.router.get("/", (async (honoContext: Context) => {
       try {
@@ -34,14 +43,7 @@ export default class FacilityRouter extends BaseRouter<
       }
     }));
 
-    this.router.get("/id", (async (honoContext: Context) => {
-      try {
-        const facilitiy = await this.controller.fetchFacility(honoContext.req, honoContext.env);
-        return honoContext.json(facilitiy);
-      } catch (ex: any) {
-        throw new HTTPException(ex.status || 500, { message: ex.message});
-      }
-    }));
+   
 
     this.router.delete("/:id", (async (honoContext: Context) => {
       try {
